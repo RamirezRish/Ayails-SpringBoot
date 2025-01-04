@@ -72,30 +72,32 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public AuthResponse loginUser(AuthLoginRequest authLoginRequest) {
-//        String username;
-//        Long id;
-//
-//        try{
-//            User user = userRepositoryI.findByEmail(email);
-//            username = user.getUsername();
-//
-//            id = user.getIdUser();
-//
-//        } catch (BadCredentialsException e){
-//            logger.error("Error: "+ e);
-//            throw new BadCredentialsException("Incorrect email! " + e);
-//        }
-//        Authentication authentication = this.authenticate(username, password);
-//
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//        String accesToken = jwtUtils.createToken(authentication);
-//
-//        AuthResponse authResponse = new AuthResponse(username, "User logged succesfuly", accesToken, id, name, last_name, email, headlines, flashCards, true);
-//
-//        return authResponse;
+        String username;
+        Long id;
+        String email = authLoginRequest.email();
+        String password = authLoginRequest.password();
 
-        return null;
+        try{
+            User user = userRepositoryI.findByEmail(email);
+            username = user.getUsername();
+
+            id = user.getIdUser();
+
+        } catch (BadCredentialsException e){
+            logger.error("Error: "+ e);
+            throw new BadCredentialsException("Incorrect email! " + e);
+        }
+        Authentication authentication = this.authenticate(username, password);
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String accesToken = jwtUtils.createToken(authentication);
+
+        AuthResponse authResponse = new AuthResponse(username, "User logged succesfuly", accesToken, id, true);
+
+        return authResponse;
+
+//        return null;
     }
 
     public Authentication authenticate (String username, String password){
