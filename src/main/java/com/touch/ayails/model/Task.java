@@ -8,6 +8,7 @@ import lombok.*;
 import java.util.Date;
 import java.util.Set;
 
+@Entity
 @Setter
 @Getter
 @Builder
@@ -24,7 +25,7 @@ public class Task {
     private TaskPriorityEnum priority;
     private String description;
     private String observation;
-    private String dev_doubts;
-    private Date time_limit;
+    private String devDoubts;
+    private Date timeLimit;
 
 }

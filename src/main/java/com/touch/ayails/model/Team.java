@@ -5,20 +5,20 @@ import lombok.*;
 
 import java.util.Set;
 
+@Entity
 @Setter
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Group {
-
+public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idTeam;
 
     private String title;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name="group_project", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = @JoinColumn(name="project_id"))
+    @JoinTable(name="team_projects", joinColumns = @JoinColumn(name = "team_id"), inverseJoinColumns = @JoinColumn(name="project_id"))
     private Set<Project> projects;
 }

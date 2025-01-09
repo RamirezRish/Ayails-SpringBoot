@@ -24,9 +24,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -121,7 +121,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         List<String> roleRequest = authCreateUserRequest.roleRequest().roleListName();
 
-        Set<Role> rolesSet = roleRepositoryI.findRolesByRoleEnumIn(roleRequest).stream().collect(Collectors.toSet());
+        Set<Role> rolesSet = new HashSet<>(roleRepositoryI.findRolesByRoleEnumIn(roleRequest));
+//        Set<Role> rolesSet = roleRepositoryI.findRolesByRoleEnumIn(roleRequest).stream().collect(Collectors.toSet());
+
+
         if(rolesSet.isEmpty()){
             throw new IllegalArgumentException("Specified roles doesn´t exist.");
         }

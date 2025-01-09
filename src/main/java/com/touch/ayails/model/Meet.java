@@ -1,6 +1,7 @@
 package com.touch.ayails.model;
 
 import com.touch.ayails.enums.ScrumTypeEnum;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
+@Entity
 @Setter
 @Getter
 @Builder
@@ -20,9 +22,9 @@ import java.util.Timer;
 public class Meet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long meetId;
 
-    private ScrumTypeEnum scrum_type;
+    private ScrumTypeEnum scrumType;
     private Long duration;
     private List<String> goals;
     private String format;

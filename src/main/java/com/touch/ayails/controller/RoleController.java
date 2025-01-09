@@ -23,7 +23,8 @@ public class RoleController {
     private final Logger logger = LoggerFactory.getLogger(RoleController.class);
 
 //    CREATE
-    @PreAuthorize("hasRole('DEVELOPER')")
+//    @PreAuthorize("hasRole('DEVELOPER')")
+    @PreAuthorize("permitAll()")
     @PostMapping("/set")
     public Role setRole(@RequestBody Role role){
         logger.debug("RoleCC");

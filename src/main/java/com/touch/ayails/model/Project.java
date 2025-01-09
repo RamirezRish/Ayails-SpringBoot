@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.Set;
 
+@Entity
 @Setter
 @Getter
 @Builder
@@ -13,11 +14,11 @@ import java.util.Set;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long projectId;
 
     private String title;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name="project_product_backlog", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name="product_backlog_id"))
+    @JoinTable(name="project_product_backlogs", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name="product_backlog_id"))
     private Set<ProductBacklog> productBacklogs;
 }
