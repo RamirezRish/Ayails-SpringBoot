@@ -1,6 +1,7 @@
 package com.touch.ayails.service;
 
 
+import com.touch.ayails.controller.dto.TeamCreateRequest;
 import com.touch.ayails.controller.dto.TeamResponse;
 import com.touch.ayails.model.ProductBacklog;
 import com.touch.ayails.model.Project;
@@ -48,10 +49,11 @@ public class TeamService {
     }
 
 //    CREATE
-    public ResponseEntity<TeamResponse> setTeam(String title){
+    public ResponseEntity<TeamResponse> setTeam(TeamCreateRequest teamCreateRequest){
         Team team = this.teamRepositoryI.save(
                 Team.builder()
-                        .title(title)
+                        .title(teamCreateRequest.title())
+                        .idMembers(teamCreateRequest.idMembers())
                         .build()
         );
         return ResponseEntity.ok(convert(team));

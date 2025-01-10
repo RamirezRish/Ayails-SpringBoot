@@ -1,5 +1,6 @@
 package com.touch.ayails.controller;
 
+import com.touch.ayails.controller.dto.TeamCreateRequest;
 import com.touch.ayails.controller.dto.TeamResponse;
 import com.touch.ayails.model.Team;
 import com.touch.ayails.service.TeamService;
@@ -20,10 +21,11 @@ public class TeamController {
 
 
 //    CREATE
+//                  ünico que puede crear team es SCRUM_MASTER
     @PreAuthorize("permitAll()")
     @PostMapping("/set")
-    public ResponseEntity<TeamResponse> setTeam(@RequestBody String title){
-        return teamService.setTeam(title);
+    public ResponseEntity<TeamResponse> setTeam(@RequestBody TeamCreateRequest teamCreateRequest){
+        return teamService.setTeam(teamCreateRequest);
     }
 
 //    READ

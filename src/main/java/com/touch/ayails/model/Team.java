@@ -18,6 +18,8 @@ public class Team {
 
     private String title;
 
+    private Set<Long> idMembers;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="team_projects", joinColumns = @JoinColumn(name = "team_id"), inverseJoinColumns = @JoinColumn(name="project_id"))
     private Set<Project> projects;
